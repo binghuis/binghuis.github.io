@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="宋秉徽的技术博客">
-<meta property="og:url" content="https://github.com/binghuis/index.html">
+<meta name="description" content="本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么 上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$id_C$，还有两个其他的态射$f : C \to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Haskell &#x2F; 范畴论">
+<meta property="og:url" content="https://github.com/binghuis/2019/04/24/[ 翻译 ] Haskell & 范畴论/index.html">
 <meta property="og:site_name" content="宋秉徽的技术博客">
+<meta property="og:description" content="本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么 上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$id_C$，还有两个其他的态射$f : C \to">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
+<meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
+<meta property="og:updated_time" content="2019-04-24T15:06:55.970Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宋秉徽的技术博客">
+<meta name="twitter:title" content="Haskell &#x2F; 范畴论">
+<meta name="twitter:description" content="本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么 上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$id_C$，还有两个其他的态射$f : C \to">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/binghuis/">
+  <link rel="canonical" href="https://github.com/binghuis/2019/04/24/[ 翻译 ] Haskell & 范畴论/">
 
 
 
 
 
-  <title>宋秉徽的技术博客</title>
+  <title>Haskell / 范畴论 | 宋秉徽的技术博客</title>
   
 
 
@@ -140,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +220,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/24/[ 翻译 ] Haskell & 范畴论/" itemprop="url">Haskell / 范畴论</a></h1>
+          <h1 class="post-title" itemprop="name headline">Haskell / 范畴论</h1>
         
 
         <div class="post-meta">
@@ -298,9 +302,7 @@
       
 
       
-        
-          
-            <p>本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。</p>
+        <p>本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。</p>
 <h2 id="范畴论是什么"><a href="#范畴论是什么" class="headerlink" title="范畴论是什么"></a>范畴论是什么</h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png" alt="范畴1"></p>
 <p>上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$id_C$，还有两个其他的态射$f : C \to B$和$g : A \to B$，图中没有展示第三个组成元素（即如何对态射进行组合）。</p>
 <p>范畴，本质上是一个简单的集合，包括三个组成元素：</p>
@@ -323,8 +325,6 @@
 <p>$g \circ id_A = id_B \circ g = g$</p>
 <p>请注意，涉及组合操作的表达式$（o）$可以彼此相等，但各个态射不能相互相等。例如有两个态射从对象$A$到对象$B$，即$f : A \to B$ 和 $g : A \to B$，表达式$(A \to B)$相同，但态射$f = g$永远为假。</p>
 <h2 id="Hask-Haskell-范畴"><a href="#Hask-Haskell-范畴" class="headerlink" title="Hask, Haskell 范畴"></a>Hask, Haskell 范畴</h2>
-          
-        
       
     </div>
     
@@ -341,12 +341,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -356,10 +356,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -367,6 +368,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -387,8 +392,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -440,6 +454,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴论是什么"><span class="nav-number">1.</span> <span class="nav-text">范畴论是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴规则"><span class="nav-number">2.</span> <span class="nav-text">范畴规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hask-Haskell-范畴"><span class="nav-number">3.</span> <span class="nav-text">Hask, Haskell 范畴</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -573,6 +603,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
