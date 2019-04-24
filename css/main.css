@@ -1826,7 +1826,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #253c25;
+  background: #61e0ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2826,6 +2826,7 @@ hr {
 .post-button a {
   padding: 0;
   font-size: 14px;
+  color: #666;
   background: none;
   border: none;
   border-bottom: 2px solid #666;
