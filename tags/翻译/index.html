@@ -81,7 +81,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="宋秉徽的技术博客">
-<meta property="og:url" content="https://github.com/binghuis/index.html">
+<meta property="og:url" content="https://github.com/binghuis/tags/翻译/index.html">
 <meta property="og:site_name" content="宋秉徽的技术博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -115,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/binghuis/">
+  <link rel="canonical" href="https://github.com/binghuis/tags/翻译/">
 
 
 
 
 
-  <title>宋秉徽的技术博客</title>
+  <title>Tag: 翻译 | 宋秉徽的技术博客</title>
   
 
 
@@ -140,8 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,149 +213,51 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
+
+  
+  
+  
+  <div class="post-block tag">
+
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>翻译<small>Tag</small>
+        </h1>
+      </div>
+
       
-
-  
-
-  
-  
-  
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/binghuis/2019/04/24/Haskell & 范畴论/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宋秉徽">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宋秉徽的技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/24/Haskell & 范畴论/" itemprop="url"><翻译> ：Haskell / 范畴论</翻译></a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/04/24/Haskell & 范畴论/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name"><翻译> ：Haskell / 范畴论</翻译></span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-24T22:53:54+08:00">
-                2019-04-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+            </a>
         
-          
-            <p><strong><a href="https://en.wikibooks.org/wiki/Haskell/Category_theory" target="_blank" rel="noopener">原文：Haskell/Category_theory</a></strong><br>本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。</p>
-<h2 id="范畴论是什么"><a href="#范畴论是什么" class="headerlink" title="范畴论是什么"></a>范畴论是什么</h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png" style="float: left; border: none; outline: none; margin-right: 25px"></p>
-<p>左图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$id_C$，还有两个其他的态射$f : C \to B$和$g : A \to B$，图中没有展示第三个组成元素（即如何对态射进行组合）。<br><br><br><br><br>范畴，本质上是一个简单的集合，包括三个组成元素：</p>
-<ul>
-<li><p>对象的集合</p>
-</li>
-<li><p>态射的集合，每个态射将两个对象（源对象和目标对象）连接在一起（这些有时被称为箭头（arrows），但我们在这里避免使用该术语，因为它在 Haskell 中具有其他内涵。）如果 $f$ 是源对象 $A$ 到目标对象 $B$ 的态射，写作 $f : A \to B$。</p>
-</li>
-<li><p>态射组合的概念。例如：态射 $g : A \to B$ 和 态射 $f : B \to C$ 可以组合为态射 $f \circ g : A \to C$。范畴由许多东西构成。例如，全部的集合构成了范畴 Set</p>
-</li>
-</ul>
-<h2 id="范畴规则"><a href="#范畴规则" class="headerlink" title="范畴规则"></a>范畴规则</h2><p>范畴需要符合三条规则。第一条，也是最简单的一条，态射的组合操作需要满足结合律。</p>
-<p>$f\circ (g\circ h)=(f\circ g)\circ h$</p>
-<p>态射在 Haskell 中从右到左执行（最常用于数学），因此使用$f\circ g$时，$g$先执行，然后$f$。</p>
-<p>第二条，态射在组合操作下是闭合的。因此，如果存在态射$f:B \to C$和$g:A \to B$，那么范畴$h = f \circ g$中一定会存在态射$h : A \to C$。以下面范畴为例。</p>
-<p><img src="http://yi-programmer.com/blog/images/Composition-ex.png" alt="范畴2"></p>
-<p>$f$和$g$都是态射，所以我们一定能够通过组合他们在范畴中得到另一个态射。</p>
-<p>那么哪一个是态射$f \circ g$呢？唯一的选项就是$id_A$。同样，我们可以得到$g \circ f = id_B$。</p>
-<p>最后一条，在一个范畴 C 中，每一个对象 A 都会有一个身份态射，$id_A : A \to A$，这个态射是组合操作的单位元。准确的说对于每一个态射$g: A \to B $：</p>
-<p>$g \circ id_A = id_B \circ g = g$</p>
-<p>请注意，涉及组合操作的表达式$（o）$可以彼此相等，但各个态射不能相互相等。例如有两个态射从对象$A$到对象$B$，即$f : A \to B$ 和 $g : A \to B$，表达式$(A \to B)$相同，但态射$f = g$永远为假。</p>
-<h2 id="Hask-Haskell-范畴"><a href="#Hask-Haskell-范畴" class="headerlink" title="Hask, Haskell 范畴"></a>Hask, Haskell 范畴</h2>
-          
-        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-04-24T22:53:54+08:00" content="2019-04-24">
+          04-24
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
       
     </div>
-    
-    
-    
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
   
   
   
-  </article>
-
-
-    
-  </section>
 
   
 
