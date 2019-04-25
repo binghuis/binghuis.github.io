@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="翻译,函数式编程,">
+  <meta name="keywords" content="翻译,函数式编程,Haskell,范畴论,">
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="原文：Haskell/Category_theory本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$i">
-<meta name="keywords" content="翻译,函数式编程">
+<meta name="description" content="翻译自：Haskell/Category_theory本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$">
+<meta name="keywords" content="翻译,函数式编程,Haskell,范畴论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&lt;翻译&gt; ：Haskell &#x2F; 范畴论">
+<meta property="og:title" content="Haskell &#x2F; 范畴论">
 <meta property="og:url" content="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/index.html">
 <meta property="og:site_name" content="宋秉徽的技术博客">
-<meta property="og:description" content="原文：Haskell/Category_theory本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$i">
+<meta property="og:description" content="翻译自：Haskell/Category_theory本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 <meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
-<meta property="og:updated_time" content="2019-04-24T16:42:47.083Z">
+<meta property="og:updated_time" content="2019-04-25T06:39:38.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&lt;翻译&gt; ：Haskell &#x2F; 范畴论">
-<meta name="twitter:description" content="原文：Haskell/Category_theory本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$i">
+<meta name="twitter:title" content="Haskell &#x2F; 范畴论">
+<meta name="twitter:description" content="翻译自：Haskell/Category_theory本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。 范畴论是什么上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title><翻译> ：Haskell / 范畴论 | 宋秉徽的技术博客</翻译></title>
+  <title>Haskell / 范畴论 | 宋秉徽的技术博客</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline"><翻译> ：Haskell / 范畴论</翻译></h2>
+          <h2 class="post-title" itemprop="name headline">Haskell / 范畴论</h2>
         
 
         <div class="post-meta">
@@ -299,7 +299,7 @@
       
 
       
-        <p><strong><a href="https://en.wikibooks.org/wiki/Haskell/Category_theory" target="_blank" rel="noopener">原文：Haskell/Category_theory</a></strong><br>本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。</p>
+        <p><strong><a href="https://en.wikibooks.org/wiki/Haskell/Category_theory" target="_blank" rel="noopener">翻译自：Haskell/Category_theory</a></strong><br>本文将概述 Haskell 里应用的一个概念，范畴论。为此，Haskell 代码及其数学定义将会被一起呈现（不追求绝对的严谨）。我们仅试图让读者直观地了解范畴论的概念以及它与 Haskell 的关系。</p>
 <h2 id="范畴论是什么"><a href="#范畴论是什么" class="headerlink" title="范畴论是什么"></a>范畴论是什么</h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png" alt="范畴1"><br>上图为一个简单的范畴，包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$, $id_B$和$id_C$，还有两个其他的态射$f : C \to B$和$g : A \to B$，图中没有展示第三个组成元素（即如何对态射进行组合）。</p>
 <p>范畴，本质上是一个简单的集合，包括三个组成元素：</p>
 <ul>
@@ -364,11 +364,11 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/" title="<翻译> ：Haskell / 范畴论">https://binghuis.github.io/2019/04/24/Haskell-Category-theory/</a>
+    <a href="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/" title="Haskell / 范畴论">https://binghuis.github.io/2019/04/24/Haskell-Category-theory/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh" rel="external nofollow" target="_blank">CC BY-SA 3.0</a> 许可协议。转载请注明出处！
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh" rel="external nofollow" target="_blank">CC BY-SA 3.0</a> 许可协议。转载请注明出处。
   </li>
 </ul>
 
@@ -382,6 +382,10 @@
             <a href="/tags/翻译/" rel="tag"># 翻译</a>
           
             <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+            <a href="/tags/Haskell/" rel="tag"># Haskell</a>
+          
+            <a href="/tags/范畴论/" rel="tag"># 范畴论</a>
           
         </div>
       
@@ -476,7 +480,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
