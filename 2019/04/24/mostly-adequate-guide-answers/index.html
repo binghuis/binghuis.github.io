@@ -75,21 +75,18 @@
 
 
 
-<meta name="description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334// 引入库 ramda 和 folktaleconst _ = R;const &amp;#123; maybe: Maybe, result: Result &amp;#125; = folktale;// 练习 6// ==========// 写一个函数，使用 checkActive()">
 <meta name="keywords" content="翻译,函数式编程,Haskell,范畴论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Haskell &#x2F; 范畴论">
-<meta property="og:url" content="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/index.html">
+<meta property="og:url" content="https://binghuis.github.io/2019/04/24/mostly-adequate-guide-answers/index.html">
 <meta property="og:site_name" content="宋秉徽的技术博客">
-<meta property="og:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334// 引入库 ramda 和 folktaleconst _ = R;const &amp;#123; maybe: Maybe, result: Result &amp;#125; = folktale;// 练习 6// ==========// 写一个函数，使用 checkActive()">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
-<meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
-<meta property="og:updated_time" content="2019-04-30T10:28:33.371Z">
+<meta property="og:updated_time" content="2019-04-26T04:28:52.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell &#x2F; 范畴论">
-<meta name="twitter:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334// 引入库 ramda 和 folktaleconst _ = R;const &amp;#123; maybe: Maybe, result: Result &amp;#125; = folktale;// 练习 6// ==========// 写一个函数，使用 checkActive()">
 
 
 
@@ -119,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/">
+  <link rel="canonical" href="https://binghuis.github.io/2019/04/24/mostly-adequate-guide-answers/">
 
 
 
@@ -228,7 +225,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/">
+    <link itemprop="mainEntityOfPage" href="https://binghuis.github.io/2019/04/24/mostly-adequate-guide-answers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宋秉徽">
@@ -295,27 +292,8 @@
       
 
       
-        <p><strong><a href="https://en.wikibooks.org/wiki/Haskell/Category_theory" target="_blank" rel="noopener">翻译自：Haskell/Category_theory</a></strong></p>
-<p>本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。</p>
-<h2 id="范畴论是什么"><a href="#范畴论是什么" class="headerlink" title="范畴论是什么"></a>范畴论是什么</h2><p>范畴，本质上是一个简单的集合，包括三个组成元素：</p>
-<ul>
-<li>对象</li>
-<li>态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们有时被称为箭头（arrows），但本文避免使用该术语，因为它在 Haskell 中具有其他涵义。）如果 $f$ 是源对象 $A$ 到目标对象 $B$ 的态射，写作 $f : A \to B$。</li>
-<li>态射组合。例如：态射 $g : A \to B$ 和 态射 $f : B \to C$ 可以组合为态射 $f \circ g : A \to C$。许多东西都可以称为范畴。例如，所有集合构成了范畴 <strong>Set</strong>，其态射为集合间的函数，而态射组合则为一般的函数复合（标粗的为范畴名）。全部的群构成了范畴 <strong>Grp</strong>，保持群结构的函数就是它的态射（群同态），比如任意两个群 G 和 H ，G 的操作符为 $<em>$ ，H 的操作符是 $\cdot$，那么函数 $f:G \to H$ 只要满足如下条件就是一个态射：$f(u</em>v) = f(u) \cdot f(v)$</li>
-</ul>
-<p>这么看来貌似态射就是函数，但是事实并非如此。例如，任何偏序结构 $(P, \leq )$ 都构成范畴，$P$ 中的元素构成了该范畴的对象，任意两个元素 $a$ 和 $b$ 只要满足 $a \leq b$ ，那么存在态射 $a \to b$。另外，在相同的源对象和目的对象之间可以存在多个态射；以 <strong>Set</strong> 范畴为例， $\sin$ 和 $\cos$ 都是从源对象 $ \mathbb {R} $（实数集） 到目标对象 $[-1,1]$ 的函数，但是它们是不同的态射。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png" alt="范畴1"></p>
-<p>上图所示为一个简单的范畴，其包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$，$id_B$ 和 $id_C$，其他的两个态射 $f : C \to B$ 和 $g : A \to B$，图中没有展示范畴的第三个组成元素（即态射组合）。</p>
-<h2 id="范畴公理"><a href="#范畴公理" class="headerlink" title="范畴公理"></a>范畴公理</h2><p>范畴需要符合三条公理。第一条，也是最简单的一条，态射的组合操作需要满足<strong>结合律</strong>。</p>
-<p>$f\circ (g\circ h)=(f\circ g)\circ h$</p>
-<p>态射在 Haskell 中从右到左执行，因此使用$f\circ g$时，$g$先执行，然后$f$。</p>
-<p>第二条，态射在组合操作下是<strong>闭合的</strong>。因此，如果存在态射 $f:B \to C$ 和 $g:A \to B$，那么范畴 $h = f \circ g$ 中一定会存在态射 $h : A \to C$。以下面范畴为例。</p>
-<p><img src="http://yi-programmer.com/blog/images/Composition-ex.png" alt="范畴2"></p>
-<p>$f$ 和 $g$ 都是态射，所以我们一定能够通过组合他们在范畴中得到另一个态射。<br>那么哪一个是态射 $f \circ g$ 呢？唯一可能的答案就是 $id_A$。同样，我们可以得到$g \circ f = id_B$。</p>
-<p>最后一条，在一个范畴 C 中，每一个对象 A 都会有一个<strong>单位态射</strong>，$id_A : A \to A$，这个态射是组合操作的单位元。准确的说对于每一个态射 $g: A \to B $：存在</p>
-<p>$g \circ id_A = id_B \circ g = g$</p>
-<p>请注意，涉及组合操作的表达式$（o）$可以彼此相等，但各个态射不能相等。例如有两个态射从对象 $A$ 到对象 $B$，即 $f : A \to B$ 和 $g : A \to B$，表达式 $(A \to B)$ 相同，但态射 $f = g$ 永远为假。</p>
-<h2 id="Hask-Haskell-范畴"><a href="#Hask-Haskell-范畴" class="headerlink" title="Hask, Haskell 范畴"></a>Hask, Haskell 范畴</h2>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入库 ramda 和 folktale</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> _ = R;</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">maybe</span>: Maybe, <span class="attr">result</span>: Result &#125; = folktale;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 练习 6</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// 写一个函数，使用 checkActive() 和 showWelcome() 分别允许访问或返回错误</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showWelcome = _.compose(</span><br><span class="line">  _.concat(<span class="string">"Welcome "</span>),</span><br><span class="line">  _.prop(<span class="string">"name"</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> checkActive = <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user.active</span><br><span class="line">    ? Result.Ok(user)</span><br><span class="line">    : Result.Error(<span class="string">"Your account is not active"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex6 = _.compose(</span><br><span class="line">  _.map(showWelcome),</span><br><span class="line">  checkActive</span><br><span class="line">);</span><br><span class="line">ex6(&#123; <span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">name</span>: <span class="string">"song"</span> &#125;); <span class="comment">// Welcome song</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 练习 7</span></span><br><span class="line"><span class="comment">// ==========</span></span><br><span class="line"><span class="comment">// 写一个验证函数，检查参数是否 length &gt; 3。如果是就返回 Right(x)，否则就返回</span></span><br><span class="line"><span class="comment">// Left("You need &gt; 3")</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ex7 = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> _.gt(x)(<span class="number">3</span>) ? Result.Ok(x) : Result.Error(<span class="string">"You need &gt; 3"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -364,7 +342,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/" title="Haskell / 范畴论">https://binghuis.github.io/2019/04/24/Haskell-Category-theory/</a>
+    <a href="https://binghuis.github.io/2019/04/24/mostly-adequate-guide-answers/" title="Haskell / 范畴论">https://binghuis.github.io/2019/04/24/mostly-adequate-guide-answers/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -398,15 +376,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/24/Haskell-Category-theory/" rel="next" title="Haskell / 范畴论">
+                <i class="fa fa-chevron-left"></i> Haskell / 范畴论
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/24/mostly-adequate-guide-answers/" rel="prev" title="Haskell / 范畴论">
-                Haskell / 范畴论 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -458,17 +436,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            · 文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            · 站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -529,22 +498,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴论是什么"><span class="nav-number">1.</span> <span class="nav-text">范畴论是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴公理"><span class="nav-number">2.</span> <span class="nav-text">范畴公理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hask-Haskell-范畴"><span class="nav-number">3.</span> <span class="nav-text">Hask, Haskell 范畴</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
