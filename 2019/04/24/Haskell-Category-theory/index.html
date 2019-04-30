@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="翻译,函数式编程,Haskell,范畴论,">
+  <meta name="keywords" content="函数式编程,翻译,Haskell,范畴论,">
 
 
 
@@ -76,7 +76,7 @@
 
 
 <meta name="description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
-<meta name="keywords" content="翻译,函数式编程,Haskell,范畴论">
+<meta name="keywords" content="函数式编程,翻译,Haskell,范畴论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Haskell &#x2F; 范畴论">
 <meta property="og:url" content="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/index.html">
@@ -85,7 +85,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 <meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
-<meta property="og:updated_time" content="2019-04-30T10:28:33.371Z">
+<meta property="og:updated_time" content="2019-04-30T10:33:22.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell &#x2F; 范畴论">
 <meta name="twitter:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
@@ -301,7 +301,7 @@
 <ul>
 <li>对象</li>
 <li>态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们有时被称为箭头（arrows），但本文避免使用该术语，因为它在 Haskell 中具有其他涵义。）如果 $f$ 是源对象 $A$ 到目标对象 $B$ 的态射，写作 $f : A \to B$。</li>
-<li>态射组合。例如：态射 $g : A \to B$ 和 态射 $f : B \to C$ 可以组合为态射 $f \circ g : A \to C$。许多东西都可以称为范畴。例如，所有集合构成了范畴 <strong>Set</strong>，其态射为集合间的函数，而态射组合则为一般的函数复合（标粗的为范畴名）。全部的群构成了范畴 <strong>Grp</strong>，保持群结构的函数就是它的态射（群同态），比如任意两个群 G 和 H ，G 的操作符为 $<em>$ ，H 的操作符是 $\cdot$，那么函数 $f:G \to H$ 只要满足如下条件就是一个态射：$f(u</em>v) = f(u) \cdot f(v)$</li>
+<li>态射组合。例如：态射 $g : A \to B$ 和 态射 $f : B \to C$ 可以组合为态射 $f \circ g : A \to C$。许多东西都可以称为范畴。例如，所有集合构成了范畴 <strong>Set</strong>，其态射为集合间的函数，而态射组合则为一般的函数复合（标粗的为范畴名）。全部的群构成了范畴 <strong>Grp</strong>，保持群结构的函数就是它的态射（群同态），比如任意两个群 G 和 H ，G 的操作符为 $*$ ，H 的操作符是 $\cdot$ ，那么函数 $f:G \to H$ 只要满足如下条件就是一个态射：$f(u*v) = f(u) \cdot f(v)$</li>
 </ul>
 <p>这么看来貌似态射就是函数，但是事实并非如此。例如，任何偏序结构 $(P, \leq )$ 都构成范畴，$P$ 中的元素构成了该范畴的对象，任意两个元素 $a$ 和 $b$ 只要满足 $a \leq b$ ，那么存在态射 $a \to b$。另外，在相同的源对象和目的对象之间可以存在多个态射；以 <strong>Set</strong> 范畴为例， $\sin$ 和 $\cos$ 都是从源对象 $ \mathbb {R} $（实数集） 到目标对象 $[-1,1]$ 的函数，但是它们是不同的态射。</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png" alt="范畴1"></p>
@@ -379,9 +379,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/翻译/" rel="tag"># 翻译</a>
-          
             <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+            <a href="/tags/翻译/" rel="tag"># 翻译</a>
           
             <a href="/tags/Haskell/" rel="tag"># Haskell</a>
           
@@ -404,8 +404,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/24/mostly-adequate-guide-answers/" rel="prev" title="Haskell / 范畴论">
-                Haskell / 范畴论 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/30/mostly-adequate-guide-answers/" rel="prev" title="JS 函数式编程指南 答案">
+                JS 函数式编程指南 答案 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -496,7 +496,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
