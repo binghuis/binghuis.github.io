@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="函数式编程,翻译,Haskell,范畴论,">
+  <meta name="keywords" content="翻译,函数式编程,Haskell,范畴论,">
 
 
 
@@ -75,20 +75,20 @@
 
 
 
-<meta name="description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
-<meta name="keywords" content="函数式编程,翻译,Haskell,范畴论">
+<meta name="description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们">
+<meta name="keywords" content="翻译,函数式编程,Haskell,范畴论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Haskell &#x2F; 范畴论">
 <meta property="og:url" content="https://binghuis.github.io/2019/04/24/Haskell-Category-theory/index.html">
 <meta property="og:site_name" content="宋秉徽的技术博客">
-<meta property="og:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
+<meta property="og:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 <meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
-<meta property="og:updated_time" content="2019-04-30T10:33:22.955Z">
+<meta property="og:updated_time" content="2019-04-30T11:59:15.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell &#x2F; 范畴论">
-<meta name="twitter:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它">
+<meta name="twitter:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 
 
@@ -296,7 +296,7 @@
 
       
         <p><strong><a href="https://en.wikibooks.org/wiki/Haskell/Category_theory" target="_blank" rel="noopener">翻译自：Haskell/Category_theory</a></strong></p>
-<p>本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随着其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。</p>
+<p>本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。</p>
 <h2 id="范畴论是什么"><a href="#范畴论是什么" class="headerlink" title="范畴论是什么"></a>范畴论是什么</h2><p>范畴，本质上是一个简单的集合，包括三个组成元素：</p>
 <ul>
 <li>对象</li>
@@ -306,7 +306,7 @@
 <p>这么看来貌似态射就是函数，但是事实并非如此。例如，任何偏序结构 $(P, \leq )$ 都构成范畴，$P$ 中的元素构成了该范畴的对象，任意两个元素 $a$ 和 $b$ 只要满足 $a \leq b$ ，那么存在态射 $a \to b$。另外，在相同的源对象和目的对象之间可以存在多个态射；以 <strong>Set</strong> 范畴为例， $\sin$ 和 $\cos$ 都是从源对象 $ \mathbb {R} $（实数集） 到目标对象 $[-1,1]$ 的函数，但是它们是不同的态射。</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png" alt="范畴1"></p>
 <p>上图所示为一个简单的范畴，其包含三个对象 A，B，C，三个单位态射（identity morphisms）$id_A$，$id_B$ 和 $id_C$，其他的两个态射 $f : C \to B$ 和 $g : A \to B$，图中没有展示范畴的第三个组成元素（即态射组合）。</p>
-<h2 id="范畴公理"><a href="#范畴公理" class="headerlink" title="范畴公理"></a>范畴公理</h2><p>范畴需要符合三条公理。第一条，也是最简单的一条，态射的组合操作需要满足<strong>结合律</strong>。</p>
+<h2 id="范畴公理"><a href="#范畴公理" class="headerlink" title="范畴公理"></a>范畴公理</h2><p>范畴需要符合三条定律。第一条，也是最简单的一条，态射的组合操作需要满足<strong>结合律</strong>。</p>
 <p>$f\circ (g\circ h)=(f\circ g)\circ h$</p>
 <p>态射在 Haskell 中从右到左执行，因此使用$f\circ g$时，$g$先执行，然后$f$。</p>
 <p>第二条，态射在组合操作下是<strong>闭合的</strong>。因此，如果存在态射 $f:B \to C$ 和 $g:A \to B$，那么范畴 $h = f \circ g$ 中一定会存在态射 $h : A \to C$。以下面范畴为例。</p>
@@ -315,7 +315,9 @@
 <p>最后一条，在一个范畴 C 中，每一个对象 A 都会有一个<strong>单位态射</strong>，$id_A : A \to A$，这个态射是组合操作的单位元。准确的说对于每一个态射 $g: A \to B $：存在</p>
 <p>$g \circ id_A = id_B \circ g = g$</p>
 <p>请注意，涉及组合操作的表达式$（o）$可以彼此相等，但各个态射不能相等。例如有两个态射从对象 $A$ 到对象 $B$，即 $f : A \to B$ 和 $g : A \to B$，表达式 $(A \to B)$ 相同，但态射 $f = g$ 永远为假。</p>
-<h2 id="Hask-Haskell-范畴"><a href="#Hask-Haskell-范畴" class="headerlink" title="Hask, Haskell 范畴"></a>Hask, Haskell 范畴</h2>
+<h2 id="Hask-Haskell-范畴"><a href="#Hask-Haskell-范畴" class="headerlink" title="Hask, Haskell 范畴"></a>Hask, Haskell 范畴</h2><p>本节我们主要讨论范畴<strong>Hask</strong>，其对象为Haskell中的类型，态射为Haskell中的函数，态射组合操作为 ( $\cdot$ ) ，在<strong>Hask</strong>中函数 $f :: A \to B$ 为类型A到B的态射。范畴第一第二定律很容易验证，我们知道 ( $\cdot$ ) 是一个组合操作，显然，对于任何 $f$ 和 $g$ ，$f \circ g$ 是另一个函数。在Hask中，单位态射是 $id$，所以很容易验证第三定律：$id \cdot f = f \cdot id = f$</p>
+<p>这里省略掉原文一段标注</p>
+<h2 id="函子（Functors）"><a href="#函子（Functors）" class="headerlink" title="函子（Functors）"></a>函子（Functors）</h2><h3 id="Hask-上的函子"><a href="#Hask-上的函子" class="headerlink" title="Hask 上的函子"></a>Hask 上的函子</h3><h3 id="将范畴论的概念对应到-Haskell"><a href="#将范畴论的概念对应到-Haskell" class="headerlink" title="将范畴论的概念对应到 Haskell"></a>将范畴论的概念对应到 Haskell</h3><h2 id="单子（Monads）"><a href="#单子（Monads）" class="headerlink" title="单子（Monads）"></a>单子（Monads）</h2><h3 id="Example-the-powerset-functor-is-also-a-monad"><a href="#Example-the-powerset-functor-is-also-a-monad" class="headerlink" title="Example: the powerset functor is also a monad"></a>Example: the powerset functor is also a monad</h3>
       
     </div>
     
@@ -379,9 +381,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
-          
             <a href="/tags/翻译/" rel="tag"># 翻译</a>
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
           
             <a href="/tags/Haskell/" rel="tag"># Haskell</a>
           
@@ -539,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴论是什么"><span class="nav-number">1.</span> <span class="nav-text">范畴论是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴公理"><span class="nav-number">2.</span> <span class="nav-text">范畴公理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hask-Haskell-范畴"><span class="nav-number">3.</span> <span class="nav-text">Hask, Haskell 范畴</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴论是什么"><span class="nav-number">1.</span> <span class="nav-text">范畴论是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范畴公理"><span class="nav-number">2.</span> <span class="nav-text">范畴公理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hask-Haskell-范畴"><span class="nav-number">3.</span> <span class="nav-text">Hask, Haskell 范畴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函子（Functors）"><span class="nav-number">4.</span> <span class="nav-text">函子（Functors）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hask-上的函子"><span class="nav-number">4.1.</span> <span class="nav-text">Hask 上的函子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将范畴论的概念对应到-Haskell"><span class="nav-number">4.2.</span> <span class="nav-text">将范畴论的概念对应到 Haskell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单子（Monads）"><span class="nav-number">5.</span> <span class="nav-text">单子（Monads）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-the-powerset-functor-is-also-a-monad"><span class="nav-number">5.1.</span> <span class="nav-text">Example: the powerset functor is also a monad</span></a></li></ol></li></ol></div>
             
 
           </div>
