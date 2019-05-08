@@ -86,7 +86,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 <meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/65/Not-a-cat.png">
-<meta property="og:updated_time" content="2019-05-08T09:58:46.003Z">
+<meta property="og:updated_time" content="2019-05-08T10:00:45.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell &#x2F; 范畴论">
 <meta name="twitter:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们">
@@ -317,9 +317,7 @@
 <p>$g \circ id_A = id_B \circ g = g$</p>
 <p>请注意，涉及组合操作的表达式$（o）$可以彼此相等，但各个态射不能相等。例如有两个态射从对象 $A$ 到对象 $B$，即 $f : A \to B$ 和 $g : A \to B$，表达式 $( A \to B )$ 相同，但态射 $f = g$ 永远为假。</p>
 <h2 id="Hask-Haskell-范畴"><a href="#Hask-Haskell-范畴" class="headerlink" title="Hask, Haskell 范畴"></a>Hask, Haskell 范畴</h2><p>本节我们主要讨论范畴 <strong>Hask</strong>，其对象为 Haskell 中的类型，态射为 Haskell 中的函数，态射组合操作为 <code>(·)</code>，在 <strong>Hask</strong> 中函数 <code>F :: A -&gt; B</code> 为类型 <code>A</code> 到 <code>B</code> 的态射。范畴第一第二定律很容易验证，我们知道 <code>(·)</code> 是一个组合操作，显然，对于任何 <code>f</code> 和 <code>g</code> ，<code>f · g</code> 是一个新的函数。在 Hask 中，单位态射是 <code>id</code>，所以很容易验证第三定律：<code>id · f = f · id = f</code></p>
-<p>上面的定律并不是一个十分准确的转换，因为我们忽略了下标。在 Haskell 中函数 <code>id</code> 是 <em>多态的</em> — 它的域和范围可以采用许多不同的类型，用范畴的概念解释就是可以存在许多不同的源对象和目标对象。但是范畴论中的态射是定义为 _单态_ 的 — 每个态射都有一个特定的源对象和一个特定的目标对象（注意：这里的 _单态_ 不在范畴论上使用）。多态 Haskell 函数可以通过指定其类型（用单态类型 <em>实例化</em>）来实现单态，因此我们说 Hask 上类型 <code>A</code> 的单位态射是 <code>id :: A -&gt; A</code> 会更精确。考虑到这一点，上述定律将被重新书写为：</p>
-<p><code>(id :: B -&gt; B) · f = f · (id :: A -&gt; A) = f</code></p>
-<p>但是为简单起见，当含义明确时，我们将忽略这种区别。</p>
+<p>上面的定律并不是一个十分准确的转换，因为我们忽略了下标。在 Haskell 中函数 <code>id</code> 是 <em>多态的</em> — 它的域和范围可以采用许多不同的类型，用范畴的概念解释就是可以存在许多不同的源对象和目标对象。但是范畴论中的态射是定义为 _单态_ 的 — 每个态射都有一个特定的源对象和一个特定的目标对象（注意：这里的 _单态_ 不在范畴论上使用）。多态 Haskell 函数可以通过指定其类型（用单态类型 <em>实例化</em>）来实现单态，因此我们说 Hask 上类型 <code>A</code> 的单位态射是 <code>id :: A -&gt; A</code> 会更精确。考虑到这一点，上述定律将被重新书写为：<br><code>(id :: B -&gt; B) · f = f · (id :: A -&gt; A) = f</code><br>但是为简单起见，当含义明确时，我们将忽略这种区别。</p>
 <p><strong>练习</strong></p>
 <ul>
 <li>如上所述，任何偏序 $(P, \leq)$都是一个范畴，其中对象为 $P$ 的元素，任意两个元素 $a$ 和 $b$ 只要满足 $a \leq b$ ，那么存在态射 $a \to b$。问上述哪些定律保证了 $\leq$ 的传递性？</li>
