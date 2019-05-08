@@ -86,7 +86,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-cat.png">
 <meta property="og:image" content="http://yi-programmer.com/blog/images/Composition-ex.png">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/65/Not-a-cat.png">
-<meta property="og:updated_time" content="2019-05-08T08:26:02.920Z">
+<meta property="og:updated_time" content="2019-05-08T08:45:46.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell &#x2F; 范畴论">
 <meta name="twitter:description" content="翻译自：Haskell/Category_theory 本文将概述 Haskell 里应用的一个概念，范畴论。因此 Haskell 代码的展示将会伴随其对应的数学定义，为了让读者可以直观地理解范畴论的概念以及它与 Haskell 的关系，这种对应可能不那么绝对的严谨。 范畴论是什么范畴，本质上是一个简单的集合，包括三个组成元素：  对象 态射，每个态射将两个对象（源对象和目标对象）连接在一起（它们">
@@ -323,10 +323,15 @@
 <p><strong>练习</strong></p>
 <ul>
 <li>如上所述，任何偏序 $(P, \leq)$都是一个范畴，其中对象为 $P$ 的元素，任意两个元素 $a$ 和 $b$ 只要满足 $a \leq b$ ，那么存在态射 $a \to b$。问上述哪些定律保证了 $\leq$ 的传递性？</li>
-<li>（难度增加。）如果我们在上面的例子中添加另一个态射 $h$，如下图所示，它就不能成为一个范畴了。为什么？提示：从态射组合操作方面去考虑。</li>
+<li>（难度增加。）如果我们在上面的例子中添加另一个态射 $h$，如下图所示，它就不能成为一个范畴了。为什么？提示：从态射组合方面去考虑。</li>
 </ul>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Not-a-cat.png" alt="范畴3"></p>
-<h2 id="函子（Functors）"><a href="#函子（Functors）" class="headerlink" title="函子（Functors）"></a>函子（Functors）</h2><h3 id="Hask-上的函子"><a href="#Hask-上的函子" class="headerlink" title="Hask 上的函子"></a>Hask 上的函子</h3><h3 id="将范畴论的概念对应到-Haskell"><a href="#将范畴论的概念对应到-Haskell" class="headerlink" title="将范畴论的概念对应到 Haskell"></a>将范畴论的概念对应到 Haskell</h3><h2 id="单子（Monads）"><a href="#单子（Monads）" class="headerlink" title="单子（Monads）"></a>单子（Monads）</h2><h3 id="Example-the-powerset-functor-is-also-a-monad"><a href="#Example-the-powerset-functor-is-also-a-monad" class="headerlink" title="Example: the powerset functor is also a monad"></a>Example: the powerset functor is also a monad</h3>
+<h2 id="函子（Functors）"><a href="#函子（Functors）" class="headerlink" title="函子（Functors）"></a>函子（Functors）</h2><p>所以我们有了一些范畴，其包含对象以及将这些对象联系在一起的态射。下一个在范畴论中非常重要的概念是<strong>functor</strong>，他们将范畴联系在了一起。functor 的实质是范畴之间的转换关系，因此对于范畴 $C$ 和 $D$，有functor $F : C \to D$：</p>
+<ul>
+<li>映射范畴 $C$ 中任一对象 $A$ 到范畴 $D$ 中的对象 $F(A)$。</li>
+<li>映射范畴 $C$ 中任一态射 $f:A\to B$ 到范畴 $D$ 中态射 $F(f):F(A)\to F(B)$。</li>
+</ul>
+<h3 id="Hask-上的函子"><a href="#Hask-上的函子" class="headerlink" title="Hask 上的函子"></a>Hask 上的函子</h3><h3 id="将范畴论的概念对应到-Haskell"><a href="#将范畴论的概念对应到-Haskell" class="headerlink" title="将范畴论的概念对应到 Haskell"></a>将范畴论的概念对应到 Haskell</h3><h2 id="单子（Monads）"><a href="#单子（Monads）" class="headerlink" title="单子（Monads）"></a>单子（Monads）</h2><h3 id="Example-the-powerset-functor-is-also-a-monad"><a href="#Example-the-powerset-functor-is-also-a-monad" class="headerlink" title="Example: the powerset functor is also a monad"></a>Example: the powerset functor is also a monad</h3>
       
     </div>
     
