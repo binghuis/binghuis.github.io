@@ -20,7 +20,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Installing my packages
-        run: pnpm install
+        run: pnpm i
 
       - name: Build
         run: pnpm run build && touch ./out/.nojekyll
