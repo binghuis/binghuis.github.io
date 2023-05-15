@@ -22,7 +22,7 @@ jobs:
       - name: Installing my packages
         run: pnpm install
 
-      - name: Build my App
+      - name: Build
         run: pnpm run build && touch ./out/.nojekyll
 
       - name: Deploy 🚀
