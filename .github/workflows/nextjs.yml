@@ -23,10 +23,11 @@ jobs:
         run: pnpm i
 
       - name: Build
-        run: pnpm run build && touch ./out/.nojekyll
+        run: pnpm run build
 
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          publish_branch: gh-pages
