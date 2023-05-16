@@ -3,12 +3,11 @@ import path from "path";
 import { remarkCodeHike } from "@code-hike/mdx";
 import theme from "shiki/themes/material-theme-palenight.json";
 import { bundleMDX } from "mdx-bundler";
+import { FrontMatter } from "types";
 //  dracula material-theme-darker material-theme-ocean  one-dark-pro
 export interface PostData {
   code: string;
-  frontmatter: {
-    [key: string]: any;
-  };
+  frontmatter: FrontMatter;
   slug: string;
 }
 
@@ -44,7 +43,7 @@ export async function getPostData(slug: string): Promise<PostData> {
     );
   }
 
-  const { code, frontmatter } = await bundleMDX({
+  const { code, frontmatter } = await bundleMDX<FrontMatter>({
     source,
     files: {},
     mdxOptions(options) {

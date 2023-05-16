@@ -14,9 +14,9 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const postData = await getPostData(params.slug);
-  postData.frontmatter["published"] = dayjs(
-    postData.frontmatter["published"]
-  ).format("YYYY-MM-DD HH:mm:ss");
+  postData.frontmatter["date"] = dayjs(postData.frontmatter["date"]).format(
+    "YYYY/MM/DD HH:mm"
+  ) as any;
   return {
     props: {
       ...postData,
@@ -27,7 +27,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 export default function Page(props: PostData) {
   const { code, frontmatter } = props;
   const Component = useMemo(() => getMDXComponent(code), [code]);
-  const { title } = frontmatter;
+  const { title, date, description } = frontmatter;
 
   return (
     <div style={{ width: 800, margin: "0 auto", fontFamily: "sans-serif" }}>
@@ -36,6 +36,8 @@ export default function Page(props: PostData) {
       </nav>
       <main>
         {title && <h1>{frontmatter["title"]}</h1>}
+        {description && <div>{frontmatter["description"]}</div>}
+        {date && <div>{frontmatter["date"]}</div>}
         <Component />
       </main>
     </div>
