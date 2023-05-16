@@ -6,10 +6,11 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <link rel="icon" href="/favicon.ico" />
+          <title>Binghuis</title>
+          <link rel="icon" href="/favicon.png" />
         </Head>
-        <body className="w-screen h-screen relative overflow-y-auto overflow-x-hidden">
-          <article className="pt-12 pb-32 prose relative max-w-4xl mx-auto">
+        <body className="dark:bg-gray-950 w-screen h-screen relative overflow-y-auto overflow-x-hidden">
+          <article className="pt-12 pb-32 dark:prose-invert prose relative max-w-4xl mx-auto">
             <Main />
             <NextScript />
           </article>
