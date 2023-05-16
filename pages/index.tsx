@@ -1,4 +1,4 @@
-import { getPostNames } from "../src/posts";
+import { getPostNames } from "lib/api";
 
 type PageProps = {
   postNames: string[];
