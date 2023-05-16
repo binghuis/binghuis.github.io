@@ -4,21 +4,32 @@ import { remarkCodeHike } from "@code-hike/mdx";
 import theme from "shiki/themes/material-theme-palenight.json";
 import { bundleMDX } from "mdx-bundler";
 import { FrontMatter } from "types";
-//  dracula material-theme-darker material-theme-ocean  one-dark-pro
+
 export interface PostData {
   code: string;
   frontmatter: FrontMatter;
   slug: string;
 }
 
-export function getPostNames() {
-  return fs
-    .readdirSync("blog")
-    .filter((path) => /\.mdx?$/.test(path))
-    .map((fileName) => {
-      const postName = fileName.replace(/\.mdx?$/, "");
-      return postName;
-    });
+const postFiles = fs.readdirSync("blog").filter((path) => /\.mdx?$/.test(path));
+
+export function getAllSlugs() {
+  return postFiles.map((fileName) => {
+    return fileName.replace(/\.mdx?$/, "");
+  });
+}
+
+export function getAllPost() {
+  const promises = postFiles.map(async (fileName) => {
+    const postName = fileName.replace(/\.mdx?$/, "");
+    return await getPostData(postName);
+  });
+
+  return Promise.allSettled(promises).then((results) => {
+    return results.map((result) =>
+      result.status === "fulfilled" ? result.value : null
+    );
+  });
 }
 
 export async function getPostData(slug: string): Promise<PostData> {

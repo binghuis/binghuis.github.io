@@ -1,13 +1,14 @@
 import { getMDXComponent } from "mdx-bundler/client";
-import { getPostNames, getPostData, PostData } from "../../lib/api";
+import { getAllPost, getAllSlugs, getPostData, PostData } from "../../lib/api";
 import Link from "next/link";
 import { useMemo } from "react";
 import dayjs from "dayjs";
 
 export function getStaticPaths() {
-  const paths = getPostNames().map((slug) => ({ params: { slug } }));
+  const paths = getAllSlugs();
+
   return {
-    paths,
+    paths: paths.map((path) => ({ params: { slug: path } })),
     fallback: false,
   };
 }
@@ -15,7 +16,7 @@ export function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const postData = await getPostData(params.slug);
   postData.frontmatter["date"] = dayjs(postData.frontmatter["date"]).format(
-    "YYYY/MM/DD HH:mm"
+    "YYYY-MM-DD"
   ) as any;
   return {
     props: {
@@ -30,9 +31,9 @@ export default function Page(props: PostData) {
   const { title, date, description } = frontmatter;
 
   return (
-    <div style={{ width: 800, margin: "0 auto", fontFamily: "sans-serif" }}>
+    <div>
       <nav>
-        <Link href="/">👈 Go back home</Link>
+        <Link href="/">👈 back</Link>
       </nav>
       <main>
         {title && <h1>{frontmatter["title"]}</h1>}

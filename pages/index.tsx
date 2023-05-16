@@ -1,25 +1,43 @@
-import { getPostNames } from "lib/api";
-
-type PageProps = {
-  postNames: string[];
-};
+import dayjs from "dayjs";
+import { PostData, getAllPost } from "lib/api";
+import Link from "next/link";
 
 export async function getStaticProps() {
-  const postNames = getPostNames();
-  return { props: { postNames } };
+  const posts = await getAllPost();
+
+  return {
+    props: {
+      posts: posts
+        .map((post) => ({
+          frontmatter: {
+            ...post?.frontmatter,
+            date: dayjs(post?.frontmatter["date"]).format("YYYY-MM-DD"),
+          },
+          slug: post?.slug,
+        }))
+        .filter(Boolean),
+    },
+  };
 }
 
-export default function Page({ postNames }: PageProps) {
+export default function Page({ posts }: { posts: PostData[] }) {
   return (
-    <div style={{ width: 800, margin: "0 auto", fontFamily: "sans-serif" }}>
-      <h1>My Blog</h1>
-      <ul>
-        {postNames.map((postName) => (
-          <li key={postName}>
-            <a href={`/posts/${postName}`}>{postName}</a>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <h1>Binghuis 🤞</h1>
+      <div>
+        {posts.map((post) => {
+          const { frontmatter } = post;
+          return (
+            <div key={post.slug}>
+              <b>{frontmatter.title}</b>
+              <div>{frontmatter.description}</div>
+              <Link className="no-underline" href={`/posts/${post.slug}`}>
+                🕳️
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
