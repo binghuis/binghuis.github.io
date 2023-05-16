@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "export": "next export",
+    "preview": "next start"
   },
   "dependencies": {
     "@code-hike/mdx": "^0.8.3",
