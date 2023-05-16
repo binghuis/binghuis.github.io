@@ -11,6 +11,7 @@
   "dependencies": {
     "@code-hike/mdx": "^0.8.3",
     "esbuild": "^0.17.19",
+    "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.2.1",
     "next": "13.4.2",
     "react": "^18.2.0",
