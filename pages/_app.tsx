@@ -13,7 +13,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </Head>
-      <div className="prose mx-auto px-4 pb-16 pt-16 md:max-w-4xl">
+      <div className="prose mx-auto px-4 pb-16 pt-16 laptop:max-w-4xl">
         <article className="dark:prose-invert">
           <Component {...pageProps} />
         </article>

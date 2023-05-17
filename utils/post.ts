@@ -47,7 +47,7 @@ export async function getPostData(slug: string): Promise<PostData> {
             lineNumbers: true,
             showCopyButton: true,
             skipLanguages: ['mermaid'],
-            staticMediaQuery: 'not screen, (max-width: 768px)',
+            staticMediaQuery: 'not screen, (max-width: 1023px)',
             autoImport: true,
           },
         ],
