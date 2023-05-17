@@ -9,7 +9,15 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      typography: ({ theme }) => ({
+        invert: {
+          css: {
+            color: theme('colors.gray.400'),
+          },
+        },
+      }),
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 };
