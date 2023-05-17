@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { getMDXComponent } from 'mdx-bundler/client';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { getAllSlugs, getPostData, PostData } from '../../lib/api';
+import { PostData, getAllSlugs, getPostData } from 'utils/post';
 
 export function getStaticPaths() {
   const paths = getAllSlugs();

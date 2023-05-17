@@ -11,48 +11,28 @@ export interface PostData {
   slug: string;
 }
 
-const files = fs.readdirSync('blog').filter((path) => /\.mdx?$/.test(path));
+const postsDirectory = path.join(process.cwd(), 'blog');
+const files = fs.readdirSync(postsDirectory).filter((fileName) => /\.mdx?$/.test(fileName));
 
 export function getAllSlugs() {
-  return files.map((name) => {
-    return name.replace(/\.mdx?$/, '');
-  });
+  return files.map((fileName) => fileName.replace(/\.mdx?$/, ''));
 }
 
-export function getAllPost() {
+export async function getAllPosts() {
   const promises = files.map(async (fileName) => {
-    const name = fileName.replace(/\.mdx?$/, '');
-    return await getPostData(name);
+    const slug = fileName.replace(/\.mdx?$/, '');
+    return getPostData(slug);
   });
 
-  return Promise.allSettled(promises).then((results) => {
-    return results
-      .map((result) => (result.status === 'fulfilled' ? result.value : null))
-      .filter(Boolean);
-  });
+  const results = await Promise.allSettled(promises);
+  return results
+    .filter((result) => result.status === 'fulfilled')
+    .map((result) => (result as PromiseFulfilledResult<PostData>).value);
 }
 
 export async function getPostData(slug: string): Promise<PostData> {
-  // can be from a local file, database, anywhere
-  const source = fs.readFileSync(`blog/${slug}.mdx`, 'utf-8');
-
-  // https://github.com/kentcdodds/mdx-bundler#nextjs-esbuild-enoent
-  if (process.platform === 'win32') {
-    process.env['ESBUILD_BINARY_PATH'] = path.join(
-      process.cwd(),
-      'node_modules',
-      'esbuild',
-      'esbuild.exe',
-    );
-  } else {
-    process.env['ESBUILD_BINARY_PATH'] = path.join(
-      process.cwd(),
-      'node_modules',
-      'esbuild',
-      'bin',
-      'esbuild',
-    );
-  }
+  const filePath = path.join(postsDirectory, `${slug}.mdx`);
+  const source = await fs.promises.readFile(filePath, 'utf-8');
 
   const { code, frontmatter } = await bundleMDX<FrontMatter>({
     source,
