@@ -14,11 +14,11 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const postData = await getPostData(params.slug);
-  postData.frontmatter['date'] = dayjs(postData.frontmatter['date']).format('YYYY-MM-DD') as any;
+  const data = await getPostData(params.slug);
+  data.frontmatter['date'] = dayjs(data.frontmatter['date']).format('YYYY-MM-DD') as any;
   return {
     props: {
-      ...postData,
+      ...data,
     },
   };
 }

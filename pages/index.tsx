@@ -7,15 +7,13 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts
-        .map((post) => ({
-          frontmatter: {
-            ...post?.frontmatter,
-            date: dayjs(post?.frontmatter['date']).format('YYYY-MM-DD'),
-          },
-          slug: post?.slug,
-        }))
-        .filter(Boolean),
+      posts: posts.map((post) => ({
+        frontmatter: {
+          ...post?.frontmatter,
+          date: dayjs(post?.frontmatter['date']).format('YYYY-MM-DD'),
+        },
+        slug: post?.slug,
+      })),
     },
   };
 }

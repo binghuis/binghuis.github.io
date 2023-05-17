@@ -11,22 +11,24 @@ export interface PostData {
   slug: string;
 }
 
-const postFiles = fs.readdirSync('blog').filter((path) => /\.mdx?$/.test(path));
+const files = fs.readdirSync('blog').filter((path) => /\.mdx?$/.test(path));
 
 export function getAllSlugs() {
-  return postFiles.map((fileName) => {
-    return fileName.replace(/\.mdx?$/, '');
+  return files.map((name) => {
+    return name.replace(/\.mdx?$/, '');
   });
 }
 
 export function getAllPost() {
-  const promises = postFiles.map(async (fileName) => {
-    const postName = fileName.replace(/\.mdx?$/, '');
-    return await getPostData(postName);
+  const promises = files.map(async (fileName) => {
+    const name = fileName.replace(/\.mdx?$/, '');
+    return await getPostData(name);
   });
 
   return Promise.allSettled(promises).then((results) => {
-    return results.map((result) => (result.status === 'fulfilled' ? result.value : null));
+    return results
+      .map((result) => (result.status === 'fulfilled' ? result.value : null))
+      .filter(Boolean);
   });
 }
 
