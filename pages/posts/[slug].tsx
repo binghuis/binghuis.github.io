@@ -1,8 +1,8 @@
-import { getMDXComponent } from "mdx-bundler/client";
-import { getAllPost, getAllSlugs, getPostData, PostData } from "../../lib/api";
-import Link from "next/link";
-import { useMemo } from "react";
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
+import { getMDXComponent } from 'mdx-bundler/client';
+import Link from 'next/link';
+import { useMemo } from 'react';
+import { getAllSlugs, getPostData, PostData } from '../../lib/api';
 
 export function getStaticPaths() {
   const paths = getAllSlugs();
@@ -15,9 +15,7 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const postData = await getPostData(params.slug);
-  postData.frontmatter["date"] = dayjs(postData.frontmatter["date"]).format(
-    "YYYY-MM-DD"
-  ) as any;
+  postData.frontmatter['date'] = dayjs(postData.frontmatter['date']).format('YYYY-MM-DD') as any;
   return {
     props: {
       ...postData,
@@ -31,16 +29,16 @@ export default function Page(props: PostData) {
   const { title, date, description } = frontmatter;
 
   return (
-    <div>
+    <>
       <nav>
         <Link href="/">👈 back</Link>
       </nav>
       <main>
-        {title && <h1>{frontmatter["title"]}</h1>}
-        {description && <div>{frontmatter["description"]}</div>}
-        {date && <div>{frontmatter["date"]}</div>}
+        {title && <h1>{frontmatter['title']}</h1>}
+        {description && <div>{frontmatter['description']}</div>}
+        {date && <div>{frontmatter['date']}</div>}
         <Component />
       </main>
-    </div>
+    </>
   );
 }
