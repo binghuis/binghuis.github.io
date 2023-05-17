@@ -10,8 +10,14 @@
   display: block;
 }
 
-html {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
+@media (max-width: 767px) {
+  .ch-spotlight {
+    flex-direction: column;
+  }
+  .ch-spotlight .ch-spotlight-sticker {
+    order: -1;
+    width: auto;
+    top: 1vh;
+    height: 40vh;
+  }
 }

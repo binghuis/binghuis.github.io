@@ -35,8 +35,8 @@ export default function Page(props: PostData) {
       </nav>
       <main>
         {title && <h1>{frontmatter['title']}</h1>}
-        {description && <div>{frontmatter['description']}</div>}
         {date && <div>{frontmatter['date']}</div>}
+        {description && <div>{frontmatter['description']}</div>}
         <Component />
       </main>
     </>

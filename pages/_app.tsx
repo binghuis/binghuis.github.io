@@ -8,9 +8,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     <>
       <Head>
         <title>Binghuis</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
       </Head>
-      <div className="prose mx-auto px-8 pb-16 pt-8 md:max-w-4xl">
+      <div className="prose mx-auto px-4 pb-16 pt-16 md:max-w-4xl">
         <article className="dark:prose-invert">
           <Component {...pageProps} />
         </article>
