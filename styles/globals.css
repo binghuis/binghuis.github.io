@@ -17,8 +17,8 @@
   .ch-spotlight .ch-spotlight-sticker {
     order: -1;
     width: auto;
-    top: 1vh;
-    height: 60vh;
+    top: 0;
+    height: 50vh;
   }
   .ch-spotlight .ch-spotlight-tab {
     margin: 0;
