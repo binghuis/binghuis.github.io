@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 import { getMDXComponent } from 'mdx-bundler/client';
 import Link from 'next/link';
+import { PostData, getPostBySlug, getPostSlugs } from 'pages/lib/api';
 import { useMemo } from 'react';
-import { PostData, getAllSlugs, getPostData } from 'utils/post';
 
 export function getStaticPaths() {
-  const paths = getAllSlugs();
+  const paths = getPostSlugs();
 
   return {
     paths: paths.map((path) => ({ params: { slug: path } })),
@@ -14,19 +14,23 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const data = await getPostData(params.slug);
-  data.frontmatter['date'] = dayjs(data.frontmatter['date']).format('YYYY-MM-DD') as any;
+  const data = await getPostBySlug(params.slug, ['content']);
   return {
     props: {
       ...data,
+      frontmatter: {
+        ...data.frontmatter,
+        date: dayjs(data?.frontmatter?.['date'] ?? Date.now()).format('YYYY-MM-DD'),
+      },
     },
   };
 }
 
 export default function Page(props: PostData) {
-  const { code, frontmatter } = props;
-  const Component = useMemo(() => getMDXComponent(code), [code]);
-  const { title, date, description } = frontmatter;
+  const { content, frontmatter } = props;
+  const Component = useMemo(() => getMDXComponent(content ?? ''), [content]);
+  const { title, date, description, tags } = frontmatter;
+  console.log(frontmatter['tags']);
 
   return (
     <>
@@ -36,8 +40,9 @@ export default function Page(props: PostData) {
       <main>
         {title && <h1>{frontmatter['title']}</h1>}
         {date && <div>{frontmatter['date']}</div>}
+        {tags && <div>{}</div>}
         {description && <div>{frontmatter['description']}</div>}
-        <Component />
+        {content && <Component />}
       </main>
     </>
   );
