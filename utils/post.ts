@@ -1,4 +1,8 @@
 import { remarkCodeHike } from '@code-hike/mdx';
+<<<<<<< Updated upstream:utils/post.ts
+=======
+import dayjs from 'dayjs';
+>>>>>>> Stashed changes:pages/lib/api.ts
 import fs from 'fs';
 import { bundleMDX } from 'mdx-bundler';
 import path from 'path';

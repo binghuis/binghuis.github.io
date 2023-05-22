@@ -2,7 +2,11 @@ import dayjs from 'dayjs';
 import { getMDXComponent } from 'mdx-bundler/client';
 import Link from 'next/link';
 import { useMemo } from 'react';
+<<<<<<< Updated upstream
 import { PostData, getAllSlugs, getPostData } from 'utils/post';
+=======
+import { PostData, getPostBySlug, getPostSlugs } from '../lib/api';
+>>>>>>> Stashed changes
 
 export function getStaticPaths() {
   const paths = getAllSlugs();
