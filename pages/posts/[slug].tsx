@@ -38,8 +38,8 @@ export default function Page(props: PostData) {
       </nav>
       <main>
         {title && <h1>{frontmatter['title']}</h1>}
-        {date && <div>{frontmatter['date']}</div>}
-        {description && <div>{frontmatter['description']}</div>}
+        {date && <div className="text-sm text-gray-400">{frontmatter['date']}</div>}
+        {description && <div className="text-base text-gray-400">{frontmatter['description']}</div>}
         {content && <Component />}
       </main>
     </>

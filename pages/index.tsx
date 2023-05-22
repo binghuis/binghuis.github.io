@@ -22,7 +22,7 @@ export default function Page({ posts }: { posts: PostData[] }) {
   const postList = posts.map((post) => (
     <div key={post.slug}>
       <b>{post.frontmatter.title}</b>
-      <div>{post.frontmatter.description}</div>
+      <div className="text-sm text-gray-500">{post.frontmatter.description}</div>
       <Link className="no-underline" href={`/posts/${post.slug}`}>
         🕳️
       </Link>
