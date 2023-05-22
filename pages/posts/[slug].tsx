@@ -30,7 +30,6 @@ export default function Page(props: PostData) {
   const { content, frontmatter } = props;
   const Component = useMemo(() => getMDXComponent(content ?? ''), [content]);
   const { title, date, description, tags } = frontmatter;
-  console.log(frontmatter['tags']);
 
   return (
     <>
@@ -40,7 +39,6 @@ export default function Page(props: PostData) {
       <main>
         {title && <h1>{frontmatter['title']}</h1>}
         {date && <div>{frontmatter['date']}</div>}
-        {tags && <div>{}</div>}
         {description && <div>{frontmatter['description']}</div>}
         {content && <Component />}
       </main>

@@ -1,4 +1,5 @@
 import { remarkCodeHike } from '@code-hike/mdx';
+import dayjs from 'dayjs';
 import fs from 'fs';
 import { bundleMDX } from 'mdx-bundler';
 import path from 'path';
@@ -28,7 +29,10 @@ export async function getAllPosts(fields?: Fields) {
   const results = await Promise.allSettled(promises);
   return results
     .filter((result) => result.status === 'fulfilled')
-    .map((result) => (result as PromiseFulfilledResult<PostData>).value);
+    .map((result) => (result as PromiseFulfilledResult<PostData>).value)
+    .sort((p, c) => {
+      return dayjs(p.frontmatter.date).isBefore(dayjs(c.frontmatter.date)) ? 1 : -1;
+    });
 }
 
 export async function getPostBySlug(slug: string, fields?: Fields): Promise<Partial<PostData>> {

@@ -3,6 +3,6 @@ export interface FrontMatter {
   date: string;
   author: string;
   description: string;
-  tags: string[];
+  tags: string;
   draft: boolean;
 }
