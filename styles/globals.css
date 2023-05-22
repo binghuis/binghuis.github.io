@@ -2,25 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-.ch-editor-frame .ch-editor-button {
-  display: none;
-}
-
-.ch-editor-frame:hover .ch-editor-button {
-  display: block;
-}
-
-@media (max-width: 1023px) {
-  .ch-spotlight {
-    flex-direction: column;
-  }
-  .ch-spotlight .ch-spotlight-sticker {
-    order: -1;
-    width: auto;
-    top: 0;
-    height: 50vh;
-  }
-  .ch-spotlight .ch-spotlight-tab {
-    margin: 0;
-  }
+:root {
 }

@@ -1,1 +1,1 @@
-# mdx-bundler + Code Hike
+# Binghui's Blog

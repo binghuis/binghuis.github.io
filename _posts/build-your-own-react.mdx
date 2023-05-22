@@ -4,11 +4,42 @@ description: 从 0 到 1 实现一个简单的 React
 date: 2023-05-23
 ---
 
-我们将逐步从头开始重写 React。按照真实 React 代码的架构，但省略所有优化和非必要功能。
+我们将逐步从头开始重写 React，按照真正的 React 代码的架构进行步骤性实现，但不包括所有的优化和非必要功能。
+
+如果你读过我之前的 [“从头构建你自己的 React”](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5?gi=d99a024205db) 系列文章，不同之处在于本文基于 React 16.8，因此我们可以使用 Hooks 并且删除与类相关的所有代码。
+
+你可以在 [Didact](https://github.com/pomber/didact) 代码仓库中找到旧博客文章和代码的历史记录。还有一个关于相同内容的 [演讲](https://www.youtube.com/watch?v=8Kc2REHdwnQ&feature=youtu.be&ab_channel=GrUSP)。但这篇文章是一个独立的内容。
+
+从零开始，以下是我们将逐步添加到我们的 React 版本中的所有内容：
+
+- Step 1：createElement 函数
+- Step 2：render 函数
+- Step 3：并发模式
+- Step 4：Fibers
+- Step 5：渲染和提交阶段
+- Step 6：协调过程
+- Step 7：函数组件
+- Step 8：Hooks
 
 <CH.Scrollycoding>
 
-## Step 1
+## Step Zero: Review
+
+但首先让我们回顾一些基本概念。如果您已经对 React、JSX 和 DOM 元素的工作原理有很好的理解，可以跳过此步骤。
+
+我们将使用这个 React 应用程序，只有三行代码。第一行定义了一个 React 元素。下一行从 DOM 中获取一个节点。最后一行将 React 元素渲染到容器中。
+
+让我们删除所有特定于 React 的代码，并用原生 JavaScript 替换它。
+
+```jsx app.jsx
+const element = <h1 title="foo">Hello</h1>;
+const container = document.getElementById('root');
+ReactDOM.render(element, container);
+```
+
+---
+
+## Step I
 
 Lorem ipsum dolor sit amet, consectetur adipiscing something about points, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
