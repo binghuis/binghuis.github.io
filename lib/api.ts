@@ -1,40 +1,41 @@
 import { remarkCodeHike } from '@code-hike/mdx';
-<<<<<<< Updated upstream:utils/post.ts
-=======
 import dayjs from 'dayjs';
->>>>>>> Stashed changes:pages/lib/api.ts
-import fs from 'fs';
 import { bundleMDX } from 'mdx-bundler';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import theme from 'shiki/themes/material-theme-palenight.json';
 import { FrontMatter } from 'types';
 
 export interface PostData {
-  code: string;
+  content?: string;
   frontmatter: FrontMatter;
   slug: string;
 }
 
-const postsDirectory = path.join(process.cwd(), 'blog');
-const files = fs.readdirSync(postsDirectory).filter((fileName) => /\.mdx?$/.test(fileName));
+type Fields = (keyof Pick<PostData, 'content'>)[];
 
-export function getAllSlugs() {
-  return files.map((fileName) => fileName.replace(/\.mdx?$/, ''));
+const postsDirectory = path.join(process.cwd(), '_posts');
+
+export function getPostSlugs() {
+  return fs
+    .readdirSync(postsDirectory)
+    .filter((slug) => /\.mdx?$/.test(slug))
+    .map((slug) => slug.replace(/\.mdx?$/, ''));
 }
 
-export async function getAllPosts() {
-  const promises = files.map(async (fileName) => {
-    const slug = fileName.replace(/\.mdx?$/, '');
-    return getPostData(slug);
-  });
+export async function getAllPosts(fields?: Fields) {
+  const promises = getPostSlugs().map((slug) => getPostBySlug(slug, fields));
 
   const results = await Promise.allSettled(promises);
   return results
     .filter((result) => result.status === 'fulfilled')
-    .map((result) => (result as PromiseFulfilledResult<PostData>).value);
+    .map((result) => (result as PromiseFulfilledResult<PostData>).value)
+    .sort((p, c) => {
+      return dayjs(p.frontmatter.date).isBefore(dayjs(c.frontmatter.date)) ? 1 : -1;
+    });
 }
 
-export async function getPostData(slug: string): Promise<PostData> {
+export async function getPostBySlug(slug: string, fields?: Fields): Promise<Partial<PostData>> {
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
   const source = await fs.promises.readFile(filePath, 'utf-8');
 
@@ -60,5 +61,18 @@ export async function getPostData(slug: string): Promise<PostData> {
     },
   });
 
-  return { code, frontmatter, slug };
+  const items: Partial<PostData> = {};
+
+  fields?.forEach((field) => {
+    if (field === 'content') {
+      items['content'] = code;
+    }
+  });
+  if (frontmatter) {
+    items['frontmatter'] = frontmatter;
+  }
+  if (slug) {
+    items['slug'] = slug;
+  }
+  return items;
 }

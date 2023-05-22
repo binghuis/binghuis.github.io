@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
-import { PostData, getAllPosts } from 'utils/post';
+import { PostData, getAllPosts } from '../lib/api';
 
 export async function getStaticProps() {
   const posts = await getAllPosts();
@@ -10,7 +10,7 @@ export async function getStaticProps() {
       posts: posts.map((post) => ({
         frontmatter: {
           ...post?.frontmatter,
-          date: dayjs(post?.frontmatter['date']).format('YYYY-MM-DD'),
+          date: dayjs(post?.frontmatter['date'] ?? Date.now()).format('YYYY-MM-DD'),
         },
         slug: post?.slug,
       })),
