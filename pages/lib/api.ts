@@ -1,8 +1,8 @@
 import { remarkCodeHike } from '@code-hike/mdx';
 import dayjs from 'dayjs';
-import fs from 'fs';
 import { bundleMDX } from 'mdx-bundler';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import theme from 'shiki/themes/material-theme-palenight.json';
 import { FrontMatter } from 'types';
 
