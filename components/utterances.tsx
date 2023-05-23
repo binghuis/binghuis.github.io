@@ -10,14 +10,14 @@ const Utterances = () => {
       'binghuis/binghuis.github.io',
     );
     script.setAttribute('issue-term', 'pathname');
-    // script.setAttribute(
-    //   'theme',
-    //   'preferred-color-scheme',
-    // );
-    // script.setAttribute(
-    //   'crossorigin',
-    //   'anonymous',
-    // );
+    script.setAttribute(
+      'theme',
+      'preferred-color-scheme',
+    );
+    script.setAttribute(
+      'crossorigin',
+      'anonymous',
+    );
     script.async = true;
 
     document
