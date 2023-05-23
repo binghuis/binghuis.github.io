@@ -1,4 +1,6 @@
 {
+    "utterances": "binghuis/binghuis.github.io",
+    "issueTerm": "pathname",
     "label": "comment",
     "theme": "preferred-color-scheme",
     "crossOrigin": "anonymous"
