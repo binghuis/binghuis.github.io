@@ -1,7 +1,6 @@
 {
     "origins": [
         "https://binghuis.github.io",
-        "http://localhost:*",
-        "http://127.0.0.1:*"
+        "http://localhost:3000"
     ]
 }
