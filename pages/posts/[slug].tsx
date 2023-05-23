@@ -1,26 +1,42 @@
+import Utterances from 'components/utterances';
 import dayjs from 'dayjs';
 import { getMDXComponent } from 'mdx-bundler/client';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { PostData, getPostBySlug, getPostSlugs } from '../../lib/api';
+import {
+  PostData,
+  getPostBySlug,
+  getPostSlugs,
+} from '../../lib/api';
 
 export function getStaticPaths() {
   const paths = getPostSlugs();
 
   return {
-    paths: paths.map((path) => ({ params: { slug: path } })),
+    paths: paths.map((path) => ({
+      params: { slug: path },
+    })),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const data = await getPostBySlug(params.slug, ['content']);
+export async function getStaticProps({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const data = await getPostBySlug(params.slug, [
+    'content',
+  ]);
   return {
     props: {
       ...data,
       frontmatter: {
         ...data.frontmatter,
-        date: dayjs(data?.frontmatter?.['date'] ?? Date.now()).format('YYYY-MM-DD'),
+        date: dayjs(
+          data?.frontmatter?.['date'] ??
+            Date.now(),
+        ).format('YYYY-MM-DD'),
       },
     },
   };
@@ -28,8 +44,12 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
 export default function Page(props: PostData) {
   const { content, frontmatter } = props;
-  const Component = useMemo(() => getMDXComponent(content ?? ''), [content]);
-  const { title, date, description, tags } = frontmatter;
+  const Component = useMemo(
+    () => getMDXComponent(content ?? ''),
+    [content],
+  );
+  const { title, date, description, tags } =
+    frontmatter;
 
   return (
     <>
@@ -41,7 +61,9 @@ export default function Page(props: PostData) {
       <main className="mt-6">
         {title && <h1>{frontmatter['title']}</h1>}
         {date && (
-          <div className="text-sm text-gray-400 dark:text-gray-300">{frontmatter['date']}</div>
+          <div className="text-sm text-gray-400 dark:text-gray-300">
+            {frontmatter['date']}
+          </div>
         )}
         {description && (
           <div className="text-base text-gray-400 dark:text-gray-300">
@@ -49,6 +71,7 @@ export default function Page(props: PostData) {
           </div>
         )}
         {content && <Component />}
+        <Utterances />
       </main>
     </>
   );

@@ -42,3 +42,7 @@ body {
   border-color: var(--sail-color-blue-400);
   background-color: var(--sail-color-gray-50);
 }
+
+.utterances {
+  padding-top: 24px;
+}
