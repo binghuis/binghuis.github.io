@@ -4,8 +4,7 @@ const Utterances = () => {
   useEffect(() => {
     const script =
       document.createElement('script');
-    script.src =
-      'https://raw.gitmirror.com/binghuis/assets/main/libs/utteranc.es/client.js';
+    script.src = 'https://utteranc.es/client.js';
     script.setAttribute(
       'repo',
       'binghuis/binghuis.github.io',
