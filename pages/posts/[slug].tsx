@@ -61,12 +61,12 @@ export default function Page(props: PostData) {
       <main className="mt-6">
         {title && <h1>{frontmatter['title']}</h1>}
         {date && (
-          <div className="text-sm text-gray-400 dark:text-gray-500">
+          <div className="text-sm text-gray-500">
             {frontmatter['date']}
           </div>
         )}
         {description && (
-          <div className="text-base text-gray-400 dark:text-gray-500">
+          <div className="text-base text-gray-500">
             {frontmatter['description']}
           </div>
         )}

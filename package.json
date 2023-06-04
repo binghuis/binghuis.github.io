@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.8.3",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon --watch '_posts' --ext 'mdx' --exec 'next dev'",
     "build": "next build",
     "export": "next export",
     "preview": "next start"
@@ -23,6 +23,7 @@
     "@types/react": "^18.2.7",
     "autoprefixer": "^10.4.14",
     "esbuild": "^0.17.19",
+    "nodemon": "^2.0.22",
     "postcss": "^8.4.24",
     "postcss-import": "^15.1.0",
     "prettier": "^2.8.8",
