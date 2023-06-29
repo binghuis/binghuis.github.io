@@ -54,35 +54,29 @@ prompt = f"""
 并以 JSON 格式提供，其中包含以下键:book_id、
 title、author、genre。
 """
-```
-
----
-
-获得结构化输出结果
-
-```json prompt1.2.json
-{
-  "books": [
-    {
-      "book_id": 1,
-      "title": "The Shadow of the Wind",
-      "author": "Carlos Ruiz Zafón",
-      "genre": "Mystery"
-    },
-    {
-      "book_id": 2,
-      "title": "The Name of the Wind",
-      "author": "Patrick Rothfuss",
-      "genre": "Fantasy"
-    },
-    {
-      "book_id": 3,
-      "title": "The Hitchhiker's Guide to the Galaxy",
-      "author": "Douglas Adams",
-      "genre": "Science Fiction"
-    }
-  ]
-}
+# 输出结果
+# {
+#   "books": [
+#     {
+#       "book_id": 1,
+#       "title": "The Shadow of the Wind",
+#       "author": "Carlos Ruiz Zafón",
+#       "genre": "Mystery"
+#     },
+#     {
+#       "book_id": 2,
+#       "title": "The Name of the Wind",
+#       "author": "Patrick Rothfuss",
+#       "genre": "Fantasy"
+#     },
+#     {
+#       "book_id": 3,
+#       "title": "The Hitchhiker's Guide to the Galaxy",
+#       "author": "Douglas Adams",
+#       "genre": "Science Fiction"
+#     }
+#   ]
+# }
 ```
 
 ---
@@ -92,6 +86,68 @@ title、author、genre。
 如果任务做出的假设不一定满足，我们可以告诉模型先检查这些假设，如果不满足，指示并停止执行。你还可以考虑潜在的边缘情况以及模型应该如何处理它们，以避免意外的错误或结果。
 
 在如下示例中，我们将分别给模型两段文本，分别是制作茶的步骤以及一段没有明确步骤的文本。我们将要求模型判断其是否包含一系列指令，如果包含则按照给定格式重新编写指令，不包含则回答未提供步骤。
+
+```py prompt1.3.py
+# 有步骤的文本
+text = f"""
+泡一杯茶很容易。首先，需要把水烧开。\
+在等待期间，拿一个杯子并把茶包放进去。\
+一旦水足够热，就把它倒在茶包上。\
+等待一会儿，让茶叶浸泡。几分钟后，取出茶包。\
+如果你愿意，可以加一些糖或牛奶调味。\
+就这样，你可以享受一杯美味的茶了。
+"""
+prompt = f"""
+您将获得由三个引号括起来的文本。\
+如果它包含一系列的指令，则需要按照以下格式重新编写这些指令：
+
+第一步 - ...
+第二步 - ...
+...
+第N步 - ...
+
+如果文本中不包含一系列的指令，则直接写“未提供步骤”。"
+\"\"\"{text}\"\"\"
+"""
+
+# 输出结果
+# 第一步 - 把水烧开。
+# 第二步 - 拿一个杯子并把茶包放进去。
+# 第三步 - 把烧开的水倒在茶包上。
+# 第四步 - 等待几分钟，让茶叶浸泡。
+# 第五步 - 取出茶包。
+# 第六步 - 如果你愿意，可以加一些糖或牛奶调味。
+# 第七步 - 就这样，你可以享受一杯美味的茶了。
+```
+
+---
+
+无步骤的文本
+
+```py prompt1.3.py
+text = f"""
+今天阳光明媚，鸟儿在歌唱。\
+这是一个去公园散步的美好日子。\
+鲜花盛开，树枝在微风中轻轻摇曳。\
+人们外出享受着这美好的天气，有些人在野餐，有些人在玩游戏或者在草地上放松。\
+这是一个完美的日子，可以在户外度过并欣赏大自然的美景。
+"""
+prompt = f"""
+您将获得由三个引号括起来的文本。\
+如果它包含一系列的指令，则需要按照以下格式重新编写这些指令：
+
+第一步 - ...
+第二步 - …
+…
+第N步 - …
+
+如果文本中不包含一系列的指令，则直接写“未提供步骤”。"
+\"\"\"{text}\"\"\"
+"""
+
+# 输出结果
+# 未提供步骤。
+```
 
 </CH.Scrollycoding>
 
